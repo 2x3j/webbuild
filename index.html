@@ -6,6 +6,7 @@
 <body >
     <div id="screen-login" style="display:block">
     <div  style="position:absolute; width:100%; height: 100%; background: linear-gradient(35deg,#ccffff,#ffcccc)">            
+        
         <div class="card card-container">
             <p style="align-content: center; margin:auto; display:table; font-size: 20px; color:grey;">Login</p>
                 <span id="reauth-email" class="reauth-email"></span>
@@ -15,10 +16,57 @@
                 <div id="separador"></div>   
                 <button id="btn-signin" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
         </div><!-- /card-container -->
+
     </div>
     </div>
     <div id="screen-menu" style="display:none">
-        <button id="btn-logout" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Logout</button>
+        <nav style="position:relative !important" class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+            <ul class="navbar-nav">
+                <li id="liLogo" class="nav-item ">
+                        <a href="#" class="navbar-left"><img style="position:absolute !important;width:30px;height:30px;" src="img/logo.png"></a>
+                </li>
+                <li id="liSeparador" class="col-md-1 col-lg-1 col-xs-1"></li>
+              <li id="liProyectos" class="nav-item active">
+                <a class="nav-link" href="#">Proyectos</a>
+              </li>
+              <li id="liUpload" class="nav-item">
+                <a class="nav-link" href="#">Subir Proyecto</a>
+              </li>
+              <li id="liCreate" class="nav-item">
+                <a class="nav-link" href="#">Crear Usuario</a>
+              </li>              
+            </ul>
+            <div class="col-md-8 col-ls-8 col-xs-8"></div>
+            <button id="btn-logout" class="col-md-1 col-lg-1 btn btn-lg btn-primary btn-block btn-signin" type="submit">Salir</button>
+          </nav>
+          <div id="divProyectos" style="position: absolute; display:block" class="row-md-11 row-lg-11 row-xs-11 col-md-12 col-lg-12 col-xs-12 currentDiv">
+
+          </div>
+          <div id="divUpload" style="position: absolute; display:none" class="row-md-11 row-lg-11 row-xs-11 col-md-12 col-lg-12 col-xs-12">
+            <form>
+                <div class="form-group">
+                  <label for="exampleFormControlFile1">Example file input</label>
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                </div>
+              </form>
+          </div>
+          <div id="divCreate" style="position: absolute; display:none" class="row-md-11 row-lg-11 row-xs-11col-md-12 col-lg-12 col-xs-12">
+            <form action="php/getUser.php" method="POST"></form>
+                <div class="card card-container">
+                    <p style="align-content: center; margin:auto; display:table; font-size: 20px; color:grey;">Crear Usuario</p>
+                        <input type="text" id="inputCreateUsername" class="form-control" placeholder="Username" required autofocus>
+                        <div id="separador"></div>
+                        <input type="password" id="inputCreatePassword" class="form-control" placeholder="Password" required>
+                        <div id="separador"></div>
+                        <input type="text" id="inputCreateEmail" class="form-control" placeholder="Email" required>
+                        <div id="separador"></div>
+                        <input type="text" id="inputCreateName" class="form-control" placeholder="Nombre" required>
+                        <div id="separador"></div>
+                        <input type="text" id="inputCreateLastName" class="form-control" placeholder="Apellidos" required>
+                        <div id="separador"></div>   
+                        <button id="btn-create" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+                </div><!-- /card-container -->
+          </div>
     </div>
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
