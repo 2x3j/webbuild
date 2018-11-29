@@ -1,8 +1,8 @@
 <?php
 require_once("conectMYSQL.php");
 
-$username = $_POST["username"];
-$description = $_POST["description"];
+$username = $_GET["username"];
+$description = $_GET["description"];
 
 $filename = $_FILES["userfile"]["name"];
 $source =  $_FILES["userfile"]["tmp_name"]; 
@@ -22,7 +22,7 @@ IF (!$conn) = true{ //Si la conexión falla
         }else{
             //Subimos el nombre del fichero a la BBDD
             $sql = "INSERT INTO projects (username, project, description) 
-                        VALUES ($usename, $filename, $description)";
+                        VALUES ('".$usename."','". $filename"', '".$description.")";
             if (mysqli_query($conn, $sql)){
             // Si hemos introducido el nombre correctamente a la BBDD guardaremos el proyecto en nuestra carpeta
                 move_uploaded_file($source,"proyectos/".$filename);

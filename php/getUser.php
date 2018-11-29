@@ -7,20 +7,30 @@ require_once("conectMYSQL.php");
 //    echo 'FAIL';
 //}
 
-$usernameInput = $_POST['user'];
-$passInput = $_POST['pass'];
+$usernameInput = $_GET['user'];
+$passInput = $_GET['pass'];
 
 //conectamos con la BBDD
-$conn = connectMYSQL();
+$conn = conectMYSQL();
 
-IF (!$conn) = true{ //Si la conexión falla
+if(!$conn){ //Si la conexión falla
     die("Connection failed: " . mysqli_connect_error());
 }else{ // Si la conexión OK
-    $sql = "SELECT SINGLE username, password FROM users WHERE  username = $userInput AND password = $passInput";
-    $result = $conn->query($sql);
-    echo "Usuario encontrado";
+    $sql = "SELECT username, password FROM users WHERE username = '".$usernameInput."' AND password = '".$passInput."'";
+    print_r($sql);
+    $result = mysqli_query($conn, $sql);
+    print_r($result);
+    if(!empty($result)){
+      $info = $result->fetch_assoc();
+        echo "Usuario encontrado";
+    }else{
+        echo "Usuario no encontrado";
+    }
+    
 }
 
 
 
 ?>
+
+

@@ -1,6 +1,6 @@
 <?php
 
-function connectMYSQL{
+function conectMYSQL(){
 
     $servername = "localhost";
     $database = "repositorio";
@@ -9,16 +9,21 @@ function connectMYSQL{
     // Creamos la conexión
     $conn = mysqli_connect($servername, $username, $password, $database);
     // Chequeamos la conexión
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-        return false.
+    if (!$conn){
+        print_r("Connection failed: " . mysqli_connect_error());
+        return false;
+
     }else{
         echo "Connected successfully";
-        return $conn.
+        return $conn;
+
     }
+}
+
+
 
 //    mysqli_close($conn);
-}
+
 
 
 ?>

@@ -1,25 +1,30 @@
 <?php
-require_once("conectMYSQL.php");
 
-$username = $_POST["username"];
-$password = $_POST["password"];
-$name = $_POST["name"];
-$lastname = $_POST["lastname"];
-$email = $_POST["email"];
-$date = $_POST["date"];
+echo 'hola';
+require_once('conectMYSQL.php'); 
+
+$username = $_GET['user'];
+$password = $_GET['pass'];
+
+/* print_r($user);
+print_r($password); */
+$name = $_GET['name'];
+$lastname = $_GET['lastname']; 
+$email = $_GET['email'];   
+//$date = $_POST["date"];
 
 //conectamos con la BBDD
-$conn = connectMYSQL();
+  $conn = conectMYSQL(); 
 
-IF (!$conn) = true{ //Si la conexión falla
-    die("Connection failed: " . mysqli_connect_error());
+if(!$conn){ //Si la conexión falla
+    print_r('Connection failed: ' . mysqli_connect_error());
 }else{ // Si la conexión OK
-    $sql = "INSERT INTO users (username, password, name, lastname, email, date) 
-    VALUES ($usename, $password, $name, $lastname, $email, $date)";
-    if (mysqli_query($conn, $sql)){
-        echo "Nuevo usuario creado correctamente";
+    $sql = 'INSERT INTO users (username, password, name, lastname, email) 
+                 VALUES ("'.$username.'","'.$password.'","'.$name.'","'.$lastname.'","'. $email.'")';
+    if(mysqli_query($conn, $sql)){
+        echo 'Nuevo usuario creado correctamente';
     }else{
-        echo "Error " .$sql. "<br>" . mysqli_error($conn); 
+        echo 'Error ' .$sql. '<br>' . mysqli_error($conn); 
     }
 }
 // Cerramos conexión
