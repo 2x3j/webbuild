@@ -13,25 +13,30 @@ $("#btn-signin").off().on("click",function(){
         if(password == '' || password == ' '){
             alert("Por favor, introduce una password valida");
         }else{
-             /* FUNCION QUE TODAVIA NO FUNCIONA
             $.ajax({
                 data: parameters,
-                url: 'php/getUser.php',
+                url: 'php/getUser.php', //AQUÏ LA URL QUE TU TENGAS APUNTANDO AL PHP QUE TU QUIERAS
                 type: 'post',
                 success: function(response){
                     console.log(response);
-                    if(response == 'OK'){
+                    if(response == 'OK'){ //SI DEVUELVE EL PHP OK ES QUE ESE USUARIO Y ESA CONTRASEÑA EXISTEN
                         $("#inputUsername").val(null);
                         $("#inputPassword").val(null);
                         $("#screen-login").fadeOut(400);
                         $("#screen-menu").fadeIn(400);
+                        $.ajax({
+                            url: 'php/todoslosproyectos.php', //AQUÏ LA URL QUE TU TENGAS APUNTANDO AL PHP QUE TU QUIERAS
+                            type: 'post',
+                            success: function(response){
+                                console.log(response); 
+                            }
+                        });
                     }else{
-                        alert('FAIL');
+                        alert('Contraseñas erroneas');
                     }
                 }
             
             });
-            */
             if(username=='admin' && password=='admin'){
                 $("#inputUsername").val(null);
                 $("#inputPassword").val(null);
