@@ -22,9 +22,10 @@ if(!$conn){ //Si la conexión falla
     $sql = 'INSERT INTO users (username, password, name, lastname, email) 
                  VALUES ("'.$username.'","'.$password.'","'.$name.'","'.$lastname.'","'. $email.'")';
     if(mysqli_query($conn, $sql)){
-        echo 'Nuevo usuario creado correctamente';
+        echo json_encode("OK", JSON_FORCE_OBJECT);
     }else{
-        echo 'Error ' .$sql. '<br>' . mysqli_error($conn); 
+        //echo 'Error ' .$sql. '<br>' . mysqli_error($conn); 
+        echo json_encode("NO", JSON_FORCE_OBJECT);
     }
 }
 // Cerramos conexión

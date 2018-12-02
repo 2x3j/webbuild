@@ -12,17 +12,17 @@ $size = $_FILES["userfile"]["size"];
 //conectamos con la BBDD
 $conn = connectMYSQL();
 
-IF (!$conn) = true{ //Si la conexión falla
-
-}else{//Comprobamos el tipo de fichero
+if(!$conn){ //Si la conexión falla
+    echo "No conexion";
+}else{
     if(!((strpos($type, "zip") or  strpos($type, "rar")))){
         //Si pesa mas de 100KB no se subira
         if($size < 100000){
-            echo "El fichero no debe pesar más de 100KB";
+            echo json_encode("El fichero no debe pesar más de 100KB", JSON_FORCE_OBJECT);
         }else{
             //Subimos el nombre del fichero a la BBDD
             $sql = "INSERT INTO projects (username, project, description) 
-                        VALUES ('".$usename."','". $filename"', '".$description.")";
+                        VALUES ('".$usename."','".$filename."', '".$description.")";
             if (mysqli_query($conn, $sql)){
             // Si hemos introducido el nombre correctamente a la BBDD guardaremos el proyecto en nuestra carpeta
                 move_uploaded_file($source,"proyectos/".$filename);

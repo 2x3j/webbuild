@@ -18,8 +18,9 @@ if(!$conn){ //Si la conexión falla
         $result = mysqli_query($conn, $sql);
         if(!empty($result)){
           $info = $result->fetch_assoc();
+          echo json_encode($info, JSON_FORCE_OBJECT);
         }else{
-            echo "No existen usuarios con ese nombre";
+            echo json_encode("NO EXISTEN USUARIOS CON ESE NOMBRE", JSON_FORCE_OBJECT);
         }
     }else{
         echo 'Error ' .$sql. '<br>' . mysqli_error($conn); 
