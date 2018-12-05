@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 require_once("conectMYSQL.php");
 
 //if($_POST['user'] == 'admin' && $_POST['pass'] =='admin'){

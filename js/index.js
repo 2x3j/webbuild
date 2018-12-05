@@ -15,8 +15,10 @@ $("#btn-signin").off().on("click",function(){
         }else{
             $.ajax({
                 data: parameters,
-                url: 'php/getUser.php', //AQUÏ LA URL QUE TU TENGAS APUNTANDO AL PHP QUE TU QUIERAS
-                type: 'post',
+//                url: 'https://localhost/visualstudio/php/getUser.php?user='+username+'&pass='+password, 
+//                 url: 'https://localhost/visualstudio/php/getUser.php', //AQUÏ LA URL QUE TU TENGAS APUNTANDO AL PHP QUE TU QUIERAS
+                url: 'https://repositorioiesarcipreste.000webhostapp.com/php/getUser.php',
+                type: 'POST',
                 success: function(response){
                     console.log(response);
                     if(response == 'OK'){ //SI DEVUELVE EL PHP OK ES QUE ESE USUARIO Y ESA CONTRASEÑA EXISTEN
@@ -33,7 +35,7 @@ $("#btn-signin").off().on("click",function(){
                         });
                     }else{
                         alert('Contraseñas erroneas');
-                    }
+                    }   
                 }
             
             });

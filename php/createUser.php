@@ -3,14 +3,14 @@
 echo 'hola';
 require_once('conectMYSQL.php'); 
 
-$username = $_GET['user'];
-$password = $_GET['pass'];
+$username = $_POST['user'];
+$password = $_POST['pass'];
 
 /* print_r($user);
 print_r($password); */
-$name = $_GET['name'];
-$lastname = $_GET['lastname']; 
-$email = $_GET['email'];   
+$name = $_POST['name'];
+$lastname = $_POST['lastname']; 
+$email = $_POST['email'];   
 //$date = $_POST["date"];
 
 //conectamos con la BBDD
