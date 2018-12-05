@@ -1,6 +1,4 @@
 <?php
-
-echo 'hola';
 require_once('conectMYSQL.php'); 
 
 $username = $_POST['user'];
@@ -11,7 +9,8 @@ print_r($password); */
 $name = $_POST['name'];
 $lastname = $_POST['lastname']; 
 $email = $_POST['email'];   
-//$date = $_POST["date"];
+$curso = $_POST['curse'];
+$rol   = $_POST['role'];
 
 //conectamos con la BBDD
   $conn = conectMYSQL(); 
@@ -19,8 +18,8 @@ $email = $_POST['email'];
 if(!$conn){ //Si la conexión falla
     print_r('Connection failed: ' . mysqli_connect_error());
 }else{ // Si la conexión OK
-    $sql = 'INSERT INTO users (username, password, name, lastname, email) 
-                 VALUES ("'.$username.'","'.$password.'","'.$name.'","'.$lastname.'","'. $email.'")';
+    $sql = 'INSERT INTO users (username, password, name, lastname, email, curso, rol) 
+                 VALUES ("'.$username.'","'.$password.'","'.$name.'","'.$lastname.'","'. $email.'","'.$curso.'","'.$rol.'")';
     if(mysqli_query($conn, $sql)){
         echo json_encode("OK", JSON_FORCE_OBJECT);
     }else{

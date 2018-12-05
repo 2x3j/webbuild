@@ -21,19 +21,19 @@ if(!$conn){ //Si la conexión falla
             echo json_encode("El fichero no debe pesar más de 100KB", JSON_FORCE_OBJECT);
         }else{
             //Subimos el nombre del fichero a la BBDD
-            $sql = "INSERT INTO projects (username, project, description) 
-                        VALUES ('".$usename."','".$filename."', '".$description.")";
+            $sql = "INSERT INTO projects (username, project, description, author, curso) 
+                        VALUES ('".$usename."','".$filename."', '".$description."'".$author."','".$curso."')";
             if (mysqli_query($conn, $sql)){
             // Si hemos introducido el nombre correctamente a la BBDD guardaremos el proyecto en nuestra carpeta
                 move_uploaded_file($source,"proyectos/".$filename);
-                echo "Subiendo...";
+                echo json_encode("OK", JSON_FORCE_OBJECT);
             }else{
-                echo "Error " .$sql. "<br>" . mysqli_error($conn); 
+                echo json_encode("NO", JSON_FORCE_OBJECT);
             }
 
         }
     }else{
-        echo "El proyecto subido debe estar comprimido (.zip o .rar)";
+        echo json_encode("El proyecto subido debe estar comprimido (.zip o .rar)", JSON_FORCE_OBJECT);
     }
 }
 // Cerramos conexión

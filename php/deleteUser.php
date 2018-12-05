@@ -13,9 +13,9 @@ if(!$conn){ //Si la conexión falla
 }else{ // Si la conexión OK
     $sql = "DELETE FROM 'users' WHERE 'username' = '".$username."'";
     if(mysqli_query($conn, $sql)){
-        echo 'El usuario se ha borrado correctamente';
+        echo json_encode("OK", JSON_FORCE_OBJECT);
     }else{
-        echo 'Error ' .$sql. '<br>' . mysqli_error($conn); 
+        echo json_encode("NO", JSON_FORCE_OBJECT);
     }
 }
 // Cerramos conexión

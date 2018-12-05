@@ -91,7 +91,7 @@ $("#btn-create").off().on("click",function(){
     var name=$("#inputCreateName").val();
     var lastname=$("#inputCreateLastName").val();
     var curso=$("#inputCreateCurse").val();
-    var rol=$("#inputRol").val();
+    var rol=$("#inputCreateRol").val();
     var parameters = {
         user : username,
         pass : password,
@@ -116,11 +116,11 @@ $("#btn-create").off().on("click",function(){
                     if(lastname == '' || lastname == ' '){
                         alert("Por favor, introduce un apellido valido");
                     }else{
-                        if(curso != '1ASIR' || curso != '2ASIR' || curso != '1DAW' || curso != '2DAW'){
+                        if(curso != '1ASIR' && curso != '2ASIR' && curso != '1DAW' && curso != '2DAW'){
                             alert("Por favor, introduce un curso valido");
                         }else{
-                            if(rol != 'admin' || rol != 'Admin' || rol != 'alumno' || rol != 'Alumno'){
-                                alert("Por favor, introduce un curso valido");
+                            if(rol != 'admin' && rol != 'Admin' && rol != 'alumno' && rol != 'Alumno'){
+                                alert("Por favor, introduce un rol valido");
                         }else{
                             $.ajax({
                                 data: parameters,

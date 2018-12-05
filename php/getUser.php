@@ -19,17 +19,12 @@ if(!$conn){ //Si la conexión falla
 }else{ // Si la conexión OK
     $sql = "SELECT username, password FROM users WHERE username = '".$usernameInput."' AND password = '".$passInput."'";
     $result = mysqli_query($conn, $sql);
-/*     print_r($sql);
-    var_dump($result); */
     $info = $result->fetch_assoc();
-/*     var_dump($info); */
     if(($info["username"] != null) && ($info["password"] != null)){
         echo json_encode("OK", JSON_FORCE_OBJECT);
     }else{
         echo json_encode("NO", JSON_FORCE_OBJECT);
     }
-    
-
 }
 ?>
 
