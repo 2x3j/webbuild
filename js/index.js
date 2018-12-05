@@ -92,6 +92,15 @@ $("#btn-create").off().on("click",function(){
     var lastname=$("#inputCreateLastName").val();
     var curso=$("#inputCreateCurse").val();
     var rol=$("#inputRol").val();
+    var parameters = {
+        user : username,
+        pass : password,
+        email : email,
+        name : name,
+        lastname : lastname,
+        curse : curso,
+        role : rol
+    };
     if(username == '' || username == ' '){
         alert("Por favor, introduce un usuario valido");
     }else{
