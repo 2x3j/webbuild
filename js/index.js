@@ -15,8 +15,6 @@ $("#btn-signin").off().on("click",function(){
         }else{
             $.ajax({
                 data: parameters,
-//                url: 'https://localhost/visualstudio/php/getUser.php?user='+username+'&pass='+password, 
-//                 url: 'https://localhost/visualstudio/php/getUser.php', //AQUÏ LA URL QUE TU TENGAS APUNTANDO AL PHP QUE TU QUIERAS
                 url: 'https://repositorioiesarcipreste.000webhostapp.com/php/getUser.php',
                 type: 'POST',
                 success: function(response){
@@ -39,12 +37,6 @@ $("#btn-signin").off().on("click",function(){
                 }
             
             });
-            if(username=='admin' && password=='admin'){
-                $("#inputUsername").val(null);
-                $("#inputPassword").val(null);
-                $("#screen-login").fadeOut(400);
-                $("#screen-menu").fadeIn(400);
-            }
         }
     }
 });
@@ -98,6 +90,8 @@ $("#btn-create").off().on("click",function(){
     var email=$("#inputCreateEmail").val();
     var name=$("#inputCreateName").val();
     var lastname=$("#inputCreateLastName").val();
+    var curso=$("#inputCreateCurse").val();
+    var rol=$("#inputRol").val();
     if(username == '' || username == ' '){
         alert("Por favor, introduce un usuario valido");
     }else{
@@ -113,21 +107,27 @@ $("#btn-create").off().on("click",function(){
                     if(lastname == '' || lastname == ' '){
                         alert("Por favor, introduce un apellido valido");
                     }else{
-                        //MOSTRAMOS POR CONSOLA - BORRAR
-                        console.log(username);
-                        console.log(password);
-                        console.log(email);
-                        console.log(name);
-                        console.log(lastname);
-                        //BORRAMOS CAMPOS
-                        $("#inputCreateUsername").val('');
-                        $("#inputCreatePassword").val('');
-                        $("#inputCreateEmail").val('');
-                        $("#inputCreateName").val('');
-                        $("#inputCreateLastName").val('');
-                        //AJAX POST CREATE USER FUNCTION HERE
-                        //FIN AJAX POST CREATE USER FUNCTION HERE
-
+                        if(curso != '1ASIR' || curso != '2ASIR' || curso != '1DAW' || curso != '2DAW'){
+                            alert("Por favor, introduce un curso valido");
+                        }else{
+                            if(rol != 'admin' || rol != 'Admin' || rol != 'alumno' || rol != 'Alumno'){
+                                alert("Por favor, introduce un curso valido");
+                        }else{
+                            $.ajax({
+                                data: parameters,
+                                url: 'https://repositorioiesarcipreste.000webhostapp.com/php/createUser.php',
+                                type: 'POST',
+                                success: function(response){
+                                    console.log(response);
+                                    if(response == 'OK'){ //SI DEVUELVE EL PHP OK ES QUE ESE USUARIO Y ESA CONTRASEÑA EXISTEN
+                                        alert('Usuario Creado Correctamente');
+                                    }else{
+                                        alert('Problemas');
+                                    }   
+                                }
+                            });
+                        }
+                    }
                     }
                 }
             }
