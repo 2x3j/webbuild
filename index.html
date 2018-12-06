@@ -33,6 +33,9 @@
               <li id="liUpload" class="nav-item">
                 <a class="nav-link" href="#">Subir Proyecto</a>
               </li>
+              <li id="liGetUsers" class="nav-item">
+                <a class="nav-link" href="#">Listar Usuarios</a>
+              </li> 
               <li id="liCreate" class="nav-item">
                 <a class="nav-link" href="#">Crear Usuario</a>
               </li>              
@@ -41,7 +44,9 @@
             <button id="btn-logout" class="col-md-1 col-lg-1 btn btn-lg btn-primary btn-block btn-signin" type="submit">Salir</button>
           </nav>
           <div id="divProyectos" style="position: absolute; display:block" class="row-md-11 row-lg-11 row-xs-11 col-md-12 col-lg-12 col-xs-12 currentDiv">
+            <div id="panelProyectos"> <!-- PANEL DE PROYECTOS AQUÍ ESTARAN TODOS -->
 
+            </div>
           </div>
           <div id="divUpload" style="position: absolute; display:none" class="row-md-11 row-lg-11 row-xs-11 col-md-12 col-lg-12 col-xs-12">
             <form>
@@ -72,7 +77,35 @@
                         <button id="btn-create" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
                 </div><!-- /card-container -->
           </div>
-    </div>
+          <div id="divGetUsers" style="position: absolute; display:none" class="row-md-11 row-lg-11 row-xs-11col-md-12 col-lg-12 col-xs-12">
+            <div class="container">
+                <br/>
+                <div class="row justify-content-center">
+                                    <div class="col-12 col-md-10 col-lg-8">
+                                        
+                                            <div class="card-body row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <i class="fas fa-search h4 text-body"></i>
+                                                </div>
+                                                <!--end of col-->
+                                                <div class="col">
+                                                    <input class="form-control form-control-lg form-control-borderless" id="inputGetUsers" type="search" placeholder="Busca usuarios..">
+                                                </div>
+                                                <!--end of col-->
+                                                <div class="col-auto">
+                                                    <button id="btnGetUsers"  style="padding-bottom: 2.0rem;" class="btn btn-lg btn-success" type="submit">Buscar</button>
+                                                </div>
+                                                <!--end of col-->
+                                            </div>
+                                       
+                                    </div>
+                                    <!--end of col-->
+                                </div>
+            </div>
+            <div id="panelUsuarios"> <!-- PANEL DE USUARIOS AQUÍ ESTARAN TODOS -->
+
+            </div>
+          </div>
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">

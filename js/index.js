@@ -25,10 +25,10 @@ $("#btn-signin").off().on("click",function(){
                         $("#screen-login").fadeOut(400);
                         $("#screen-menu").fadeIn(400);
                         $.ajax({
-                            url: 'php/todoslosproyectos.php', //AQUÏ LA URL QUE TU TENGAS APUNTANDO AL PHP QUE TU QUIERAS
-                            type: 'post',
+                            url: 'https://repositorioiesarcipreste.000webhostapp.com/php/getListProyect.php',
+                            type: 'POST',
                             success: function(response){
-                                console.log(response); 
+                                console.log(response);
                             }
                         });
                     }else{
@@ -45,45 +45,79 @@ $("#btn-logout").off().on("click",function(){
     $("#screen-login").fadeIn(400);
     $("#liUpload").removeClass("active");
     $("#liCreate").removeClass("active");
+    $("#liGetUsers").removeClass("active");
     $("#liProyectos").addClass("active");
     $("#divCreate").fadeOut(400);
     $("#divUpload").fadeOut(400);
+    $("#divGetUsers").fadeOut(400);
     $("#divProyectos").fadeIn(400);
     $(".currentDiv").removeClass("currentDiv");
     $("#divProyectos").addClass("currentDiv");
 });
 $("#liProyectos").off().on("click",function(){
-    $(".currentDiv").fadeOut('slow',function(){
+    $(".currentDiv").fadeOut('400',function(){
         $(".currentDiv").removeClass("currentDiv");
         $("#divProyectos").addClass("currentDiv");
-        $("#divProyectos").fadeIn('slow');
+        $("#divProyectos").fadeIn('400');
     });
     $("#liCreate").removeClass("active");
+    $("#liGetUsers").removeClass("active");
     $("#liUpload").removeClass("active");
     $("#liProyectos").addClass("active");
 });
 
 $("#liUpload").off().on("click",function(){
-    $(".currentDiv").fadeOut('slow',function(){
+    $(".currentDiv").fadeOut('400',function(){
         $(".currentDiv").removeClass("currentDiv");
         $("#divUpload").addClass("currentDiv");
-        $("#divUpload").fadeIn('slow');
+        $("#divUpload").fadeIn('400');
     });
     $("#liProyectos").removeClass("active");
+    $("#liGetUsers").removeClass("active");
     $("#liCreate").removeClass("active");
     $("#liUpload").addClass("active");
 });
 $("#liCreate").off().on("click",function(){
-    $(".currentDiv").fadeOut('slow',function(){
+    $(".currentDiv").fadeOut('400',function(){
         $(".currentDiv").removeClass("currentDiv");
         $("#divCreate").addClass("currentDiv");
-        $("#divCreate").fadeIn('slow');
+        $("#divCreate").fadeIn('400');
     });
     $("#liProyectos").removeClass("active");
+    $("#liGetUsers").removeClass("active");
     $("#liUpload").removeClass("active");
     $("#liCreate").addClass("active");
 });
-
+$("#liGetUsers").off().on("click",function(){
+    $(".currentDiv").fadeOut('400',function(){
+        $(".currentDiv").removeClass("currentDiv");
+        $("#divGetUsers").addClass("currentDiv");
+        $("#divGetUsers").fadeIn('400');
+    });
+    $("#liProyectos").removeClass("active");
+    $("#liUpload").removeClass("active");
+    $("#liCreate").removeClass("active");
+    $("#liGetUsers").addClass("active");
+});
+$("#btnGetUsers").off().on("click",function(){
+    var username = $("#inputGetUsers").val();
+    var parameters = {
+        searchUser : username
+    };
+    if( username == '' || username == ' '){
+        alert('Introduce un usuario');
+    }else{
+        $.ajax({
+            data: parameters,
+            url: 'https://repositorioiesarcipreste.000webhostapp.com/php/searchUser.php',
+            type: 'POST',
+            success: function(response){
+                console.log(response);
+            
+            }
+        });
+    }
+});
 $("#btn-create").off().on("click",function(){
     var username=$("#inputCreateUsername").val();
     var password=$("#inputCreatePassword").val();
