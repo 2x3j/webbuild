@@ -1,8 +1,8 @@
 <?php
 require_once("conectMYSQL.php");
 
-$username = $_GET["username"];
-$description = $_GET["description"];
+$username = $_POST["username"];
+$description = $_POST["description"];
 
 $filename = $_FILES["userfile"]["name"];
 $source =  $_FILES["userfile"]["tmp_name"]; 

@@ -1,6 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
-header('Content-Type: application/json');
+header('Content-type: application/json; charset=utf-8');
 function conectMYSQL(){
 
     $servername = "localhost";
@@ -18,6 +18,31 @@ function conectMYSQL(){
 //        echo "Connected successfully";
         return $conn;
     }
+}
+
+function getArraySQL($sql){
+    echo " Entra " ;
+    //Creamos la conexión con la función anterior
+    $conn = conectMYSQL();
+    //generamos la consulta
+        mysqli_set_charset($conn, "utf8"); //formato de datos utf8
+    if(!$result = mysqli_query($conn, $sql)){
+        return "NO";
+    }else{ 
+    $info = array(); //creamos un array
+    //guardamos en un array multidimensional todos los datos de la consulta
+    $i=0;
+    while($row = $result->fetch_assoc()){
+        $info[$i] = $row;
+        $i++;
+    }
+        disconnectDB($conn); //desconectamos la base de datos
+        return $info; //devolvemos el array
+    }
+}
+
+function setSQL($sql){
+
 }
 
 

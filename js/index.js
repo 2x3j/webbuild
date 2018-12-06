@@ -16,6 +16,7 @@ $("#btn-signin").off().on("click",function(){
             $.ajax({
                 data: parameters,
                 url: 'https://repositorioiesarcipreste.000webhostapp.com/php/getUser.php',
+                dataType: "json",
                 type: 'POST',
                 success: function(response){
                     console.log(response);
@@ -109,11 +110,11 @@ $("#btnGetUsers").off().on("click",function(){
     }else{
         $.ajax({
             data: parameters,
+            dataType: "json",
             url: 'https://repositorioiesarcipreste.000webhostapp.com/php/searchUser.php',
             type: 'POST',
             success: function(response){
                 console.log(response);
-            
             }
         });
     }

@@ -15,6 +15,7 @@ $rol   = $_POST['role'];
 //conectamos con la BBDD
   $conn = conectMYSQL(); 
 
+
 if(!$conn){ //Si la conexión falla
     print_r('Connection failed: ' . mysqli_connect_error());
 }else{ // Si la conexión OK
@@ -28,7 +29,9 @@ if(!$conn){ //Si la conexión falla
     }
 }
 // Cerramos conexión
-mysqli_close($conn);
+mysqli_close($conn); 
+
+
 
 ?>
 

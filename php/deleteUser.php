@@ -2,7 +2,7 @@
 
 require_once('conectMYSQL.php'); 
 
-$username = $_GET['username'];  
+$username = $_POST['username'];  
 //$date = $_POST["date"];
 
 //conectamos con la BBDD

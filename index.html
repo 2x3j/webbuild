@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>Repositorios</title>
-    <meta http-<equiv="Content-Security-Policy" content="default-src ; style-src 'self' 'unsafe-inline' ; script-src 'self' 'unsafe-inline' 'unsafe-eval' *">    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
 </head>
 <body >
     <div id="screen-login" style="display:block">
@@ -70,9 +71,21 @@
                         <div id="separador"></div>
                         <input type="text" id="inputCreateLastName" class="form-control" placeholder="Apellidos" required>
                         <div id="separador"></div>
-                        <input type="text" id="inputCreateCurse" class="form-control" placeholder="Curso" required>
+                        <!-- <input type="text" id="inputCreateCurse" class="form-control" placeholder="Curso" required> -->
+                        <select id="inputCreateCurse" class="form-control">
+                            <option value="1DAW">1º DAW</option>
+                            <option value="2DAW">2º DAW</option>
+                            <option value="1ASIR">1º ASIR</option>
+                            <option value="2ASIR">2º ASIR</option>
+                            <option value="1SMR">1º SMR</option>
+                            <option value="2SMR">2º SMR</option>
+                          </select> 
                         <div id="separador"></div>
-                        <input type="text" id="inputCreateRol" class="form-control" placeholder="Rol" required>
+                        <!-- <input type="text" id="inputCreateRol" class="form-control" placeholder="Rol" required> -->
+                        <select id="inputCreateRol" class="form-control">
+                            <option value="alumno">Alumno</option>
+                            <option value="admin">Administrador</option>
+                          </select> 
                         <div id="separador"></div>   
                         <button id="btn-create" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
                 </div><!-- /card-container -->
