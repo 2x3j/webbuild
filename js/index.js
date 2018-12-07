@@ -28,8 +28,14 @@ $("#btn-signin").off().on("click",function(){
                         $.ajax({
                             url: 'https://repositorioiesarcipreste.000webhostapp.com/php/getListProyect.php',
                             type: 'POST',
-                            success: function(response){
-                                console.log(response);
+                        }).done(function(data){
+                            $('#tablaGetProyectos').html('');
+                           console.log(data);
+                           var count = Object.keys(data).length;
+                           console.log(count);
+                            $('#tablaGetProyectos').append('<tr id="headertablaGetProyectos" class="info"><th>Author</th><th>Username</th><th>Curse</th><th>Description</th><th>Project</th><th>Actions</th></tr>');
+                            for(i=0;i<count;i++){
+                                $('#tablaGetProyectos').append('<tr><td>'+data[i].author+'</td><td>'+data[i].username+'</td><td>'+data[i].curso+'</td><td>'+data[i].description+'</td><td>'+data[i].project+'</td><td><button id="btnDown-'+data[i].username+data[i].project+'" style="margin-right: 10px;" type="button" class="btn btn-info">Download</button><button id="btnDelete-'+data[i].username+data[i].project+'" type="button" class="btn btn-danger">Delete</button></td></tr>');
                             }
                         });
                     }else{
@@ -65,6 +71,20 @@ $("#liProyectos").off().on("click",function(){
     $("#liGetUsers").removeClass("active");
     $("#liUpload").removeClass("active");
     $("#liProyectos").addClass("active");
+    $.ajax({
+        url: 'https://repositorioiesarcipreste.000webhostapp.com/php/getListProyect.php',
+        type: 'POST',
+    }).done(function(data){
+        $('#tablaGetProyectos').html('');
+
+       var count = Object.keys(data).length;
+
+        $('#tablaGetProyectos').append('<tr id="headertablaGetProyectos" class="info"><th>Author</th><th>Username</th><th>Curse</th><th>Description</th><th>Project</th><th>Actions</th></tr>');
+        for(i=0;i<count;i++){
+            $('#tablaGetProyectos').append('<tr><td>'+data[i].author+'</td><td>'+data[i].username+'</td><td>'+data[i].curso+'</td><td>'+data[i].description+'</td><td>'+data[i].project+'</td><td><button id="btnDown-'+data[i].username+data[i].project+'" style="margin-right: 10px;" type="button" class="btn btn-info">Download</button><button id="btnDelete-'+data[i].username+data[i].project+'" type="button" class="btn btn-danger">Delete</button></td></tr>');
+        }
+    });
+    
 });
 
 $("#liUpload").off().on("click",function(){
@@ -101,20 +121,23 @@ $("#liGetUsers").off().on("click",function(){
     $("#liGetUsers").addClass("active");
 });
 $("#btnGetUsers").off().on("click",function(){
+    $('#tablaGetUsers').html('');
     var username = $("#inputGetUsers").val();
     var parameters = {
         searchUser : username
     };
-    if( username == '' || username == ' '){
-        alert('Introduce un usuario');
+    if(!true){
     }else{
         $.ajax({
             data: parameters,
-            dataType: "json",
             url: 'https://repositorioiesarcipreste.000webhostapp.com/php/searchUser.php',
             type: 'POST',
-            success: function(response){
-                console.log(response);
+        }).done(function(data){
+           console.log(data[0]);
+           var count = Object.keys(data).length;
+            $('#tablaGetUsers').append('<tr id="headertableGetUsers" class="info"><th>Username</th><th>Email</th><th>Name</th><th>Lastname</th><th>Actions</th></tr>');
+            for(i=0;i<count;i++){
+                $('#tablaGetUsers').append('<tr><td>'+data[i].username+'</td><td>'+data[i].email+'</td><td>'+data[i].name+'</td><td>'+data[i].lastname+'</td><td><button id="btn-'+data[i].username+'" type="button" class="btn btn-danger">Delete</button></td></tr>');
             }
         });
     }
@@ -142,7 +165,7 @@ $("#btn-create").off().on("click",function(){
         if(password == '' || password == ' '){
             alert("Por favor, introduce una password valida");
         }else{
-            if(email == '' || email == ' '){
+            if(!email.includes("@gmail.com")){
                 alert("Por favor, introduce un email valido");
             }else{
                 if(name == '' || name == ' '){

@@ -29,49 +29,75 @@
                 </li>
                 <li id="liSeparador" class="col-md-1 col-lg-1 col-xs-1"></li>
               <li id="liProyectos" class="nav-item active">
-                <a class="nav-link" href="#">Proyectos</a>
+                <a class="nav-link" href="#">List Projects</a>
               </li>
               <li id="liUpload" class="nav-item">
-                <a class="nav-link" href="#">Subir Proyecto</a>
+                <a class="nav-link" href="#">Upload Projects</a>
               </li>
               <li id="liGetUsers" class="nav-item">
-                <a class="nav-link" href="#">Listar Usuarios</a>
+                <a class="nav-link" href="#">List Users</a>
               </li> 
               <li id="liCreate" class="nav-item">
-                <a class="nav-link" href="#">Crear Usuario</a>
+                <a class="nav-link" href="#">Create Users</a>
               </li>              
             </ul>
             <div class="col-md-8 col-ls-8 col-xs-8"></div>
             <button id="btn-logout" class="col-md-1 col-lg-1 btn btn-lg btn-primary btn-block btn-signin" type="submit">Salir</button>
           </nav>
           <div id="divProyectos" style="position: absolute; display:block" class="row-md-11 row-lg-11 row-xs-11 col-md-12 col-lg-12 col-xs-12 currentDiv">
-            <div id="panelProyectos"> <!-- PANEL DE PROYECTOS AQUÍ ESTARAN TODOS -->
-
+            <div id="panelProyectos" style="margin-top: 25px;"> <!-- PANEL DE PROYECTOS AQUÍ ESTARAN TODOS -->
+                <div class="container">
+                <table id="tablaGetProyectos" class="table table-bordered table-hover">
+                
+                    </table>
+                    </div>
             </div>
           </div>
           <div id="divUpload" style="position: absolute; display:none" class="row-md-11 row-lg-11 row-xs-11 col-md-12 col-lg-12 col-xs-12">
-            <form>
-                <div class="form-group">
-                  <label for="exampleFormControlFile1">Example file input</label>
-                  <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                </div>
-              </form>
+                <div class="card card-container">
+                        <p style="align-content: center; margin:auto; display:table; font-size: 20px; color:grey;">Upload Project</p>
+                        <div id="separador"></div>
+                            <input type="text" id="inputProjectAuthor" class="form-control" placeholder="Author" required autofocus>
+                            <div id="separador"></div>
+                            <input type="text" id="inputProjectUsername" class="form-control" placeholder="Username" required>
+                            <div id="separador"></div>
+                            <select id="inputProjectCurse" class="form-control">
+                                    <option value="1DAW">1º DAW</option>
+                                    <option value="2DAW">2º DAW</option>
+                                    <option value="1ASIR">1º ASIR</option>
+                                    <option value="2ASIR">2º ASIR</option>
+                                    <option value="1SMR">1º SMR</option>
+                                    <option value="2SMR">2º SMR</option>
+                                  </select> 
+                                <div id="separador"></div>
+                            <input type="text" id="inputProjectDescription" class="form-control" placeholder="Description" required>
+                            <div id="separador"></div>
+                            <input type="text" id="inputProjectProject" class="form-control" placeholder="Project" required>
+                            <div id="separador"></div>
+                            <div class="form-group">
+                                    <label for="exampleFormControlFile1">Upload your project here</label>
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                  </div>
+                                  <div id="separador"></div>
+                            <button id="btn-upload" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Upload Project</button>
+                    </div><!-- /card-container -->
+              
           </div>
           <div id="divCreate" style="position: absolute; display:none" class="row-md-11 row-lg-11 row-xs-11col-md-12 col-lg-12 col-xs-12">
-            <form action="php/getUser.php" method="POST"></form>
+            <!--<form action="php/getUser.php" method="POST"></form>-->
                 <div class="card card-container">
-                    <p style="align-content: center; margin:auto; display:table; font-size: 20px; color:grey;">Crear Usuario</p>
+                    <p style="align-content: center; margin:auto; display:table; font-size: 20px; color:grey;">Create User</p>
+                    <div id="separador"></div>
                         <input type="text" id="inputCreateUsername" class="form-control" placeholder="Username" required autofocus>
                         <div id="separador"></div>
                         <input type="password" id="inputCreatePassword" class="form-control" placeholder="Password" required>
                         <div id="separador"></div>
-                        <input type="text" id="inputCreateEmail" class="form-control" placeholder="Email" required>
+                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="inputCreateEmail" class="form-control" placeholder="Email" required>
                         <div id="separador"></div>
-                        <input type="text" id="inputCreateName" class="form-control" placeholder="Nombre" required>
+                        <input type="text" id="inputCreateName" class="form-control" placeholder="Name" required>
                         <div id="separador"></div>
-                        <input type="text" id="inputCreateLastName" class="form-control" placeholder="Apellidos" required>
+                        <input type="text" id="inputCreateLastName" class="form-control" placeholder="Lastname" required>
                         <div id="separador"></div>
-                        <!-- <input type="text" id="inputCreateCurse" class="form-control" placeholder="Curso" required> -->
                         <select id="inputCreateCurse" class="form-control">
                             <option value="1DAW">1º DAW</option>
                             <option value="2DAW">2º DAW</option>
@@ -81,7 +107,6 @@
                             <option value="2SMR">2º SMR</option>
                           </select> 
                         <div id="separador"></div>
-                        <!-- <input type="text" id="inputCreateRol" class="form-control" placeholder="Rol" required> -->
                         <select id="inputCreateRol" class="form-control">
                             <option value="alumno">Alumno</option>
                             <option value="admin">Administrador</option>
@@ -116,7 +141,11 @@
                                 </div>
             </div>
             <div id="panelUsuarios"> <!-- PANEL DE USUARIOS AQUÍ ESTARAN TODOS -->
-
+                <div class="container">
+                    <table id="tablaGetUsers" class="table table-bordered table-hover">
+                
+                    </table>
+                </div>
             </div>
           </div>
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
