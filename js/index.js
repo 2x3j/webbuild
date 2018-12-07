@@ -35,8 +35,36 @@ $("#btn-signin").off().on("click",function(){
                            console.log(count);
                             $('#tablaGetProyectos').append('<tr id="headertablaGetProyectos" class="info"><th>Author</th><th>Username</th><th>Curse</th><th>Description</th><th>Project</th><th>Actions</th></tr>');
                             for(i=0;i<count;i++){
-                                $('#tablaGetProyectos').append('<tr><td>'+data[i].author+'</td><td>'+data[i].username+'</td><td>'+data[i].curso+'</td><td>'+data[i].description+'</td><td>'+data[i].project+'</td><td><button id="btnDown-'+data[i].username+data[i].project+'" style="margin-right: 10px;" type="button" class="btn btn-info">Download</button><button id="btnDelete-'+data[i].username+data[i].project+'" type="button" class="btn btn-danger">Delete</button></td></tr>');
+                                $('#tablaGetProyectos').append('<tr id="tr-'+data[i].project+'"><td>'+data[i].author+'</td><td>'+data[i].username+'</td><td>'+data[i].curso+'</td><td>'+data[i].description+'</td><td>'+data[i].project+'</td><td><button id="btnDown-'+data[i].project+'" style="margin-right: 10px;" type="button" class="btn btn-info downProject">Download</button><button id="btnDelete-'+data[i].project+'" type="button" class="btn btn-danger deleteProject">Delete</button></td></tr>');
                             }
+                            $(".deleteProject").off().on("click", function(){
+                                var id = $(this).attr("id");
+                                var clave= id.substr(10);
+                                console.log(clave);
+                                var parameters = {
+                                    project : clave
+                                }
+                                $.ajax({
+                                    data: parameters,
+                                    url: 'https://repositorioiesarcipreste.000webhostapp.com/php/deleteProject.php',
+                                    type: 'POST',
+                                }).done(function(data){
+                                    console.log(data);
+                                    if(data == 'OK'){
+                                        $('#tr-'+clave+'').remove();
+                                    }
+                                });
+                               
+                        });
+                        $(".downProject").off().on("click", function(){
+                            var id = $(this).attr("id");
+                            var clave= id.substr(8);
+                            console.log(clave);
+                            var parameters = {
+                                project : clave
+                            }
+                
+                        });
                         });
                     }else{
                         alert('Contraseñas erroneas');
@@ -81,10 +109,37 @@ $("#liProyectos").off().on("click",function(){
 
         $('#tablaGetProyectos').append('<tr id="headertablaGetProyectos" class="info"><th>Author</th><th>Username</th><th>Curse</th><th>Description</th><th>Project</th><th>Actions</th></tr>');
         for(i=0;i<count;i++){
-            $('#tablaGetProyectos').append('<tr><td>'+data[i].author+'</td><td>'+data[i].username+'</td><td>'+data[i].curso+'</td><td>'+data[i].description+'</td><td>'+data[i].project+'</td><td><button id="btnDown-'+data[i].username+data[i].project+'" style="margin-right: 10px;" type="button" class="btn btn-info">Download</button><button id="btnDelete-'+data[i].username+data[i].project+'" type="button" class="btn btn-danger">Delete</button></td></tr>');
+            $('#tablaGetProyectos').append('<tr id="tr-'+data[i].project+'"><td>'+data[i].author+'</td><td>'+data[i].username+'</td><td>'+data[i].curso+'</td><td>'+data[i].description+'</td><td>'+data[i].project+'</td><td><button id="btnDown-'+data[i].project+'" style="margin-right: 10px;" type="button" class="btn btn-info downProject">Download</button><button id="btnDelete-'+data[i].project+'" type="button" class="btn btn-danger deleteProject">Delete</button></td></tr>');
         }
+        $(".deleteProject").off().on("click", function(){
+            var id = $(this).attr("id");
+            var clave= id.substr(10);
+            console.log(clave);
+            var parameters = {
+                project : clave
+            }
+            $.ajax({
+                data: parameters,
+                url: 'https://repositorioiesarcipreste.000webhostapp.com/php/deleteProject.php',
+                type: 'POST',
+            }).done(function(data){
+                console.log(data);
+                if(data == 'OK'){
+                    $('#tr-'+clave+'').remove();
+                }
+            });
+
+        });
+        $(".downProject").off().on("click", function(){
+            var id = $(this).attr("id");
+            var clave= id.substr(8);
+            console.log(clave);
+            var parameters = {
+                project : clave
+            }
+
+        });
     });
-    
 });
 
 $("#liUpload").off().on("click",function(){
@@ -137,8 +192,26 @@ $("#btnGetUsers").off().on("click",function(){
            var count = Object.keys(data).length;
             $('#tablaGetUsers').append('<tr id="headertableGetUsers" class="info"><th>Username</th><th>Email</th><th>Name</th><th>Lastname</th><th>Actions</th></tr>');
             for(i=0;i<count;i++){
-                $('#tablaGetUsers').append('<tr><td>'+data[i].username+'</td><td>'+data[i].email+'</td><td>'+data[i].name+'</td><td>'+data[i].lastname+'</td><td><button id="btn-'+data[i].username+'" type="button" class="btn btn-danger">Delete</button></td></tr>');
+                $('#tablaGetUsers').append('<tr id="tr-'+data[i].username+'"><td>'+data[i].username+'</td><td>'+data[i].email+'</td><td>'+data[i].name+'</td><td>'+data[i].lastname+'</td><td><button id="btn-'+data[i].username+'" type="button" class="btn btn-danger deleteUser">Delete</button></td></tr>');
             }
+        $(".deleteUser").off().on("click", function(){
+                var id = $(this).attr("id");
+                var clave= id.substr(4);
+                console.log(clave);
+                var parameters = {
+                    username : clave
+                }
+                $.ajax({
+                    data: parameters,
+                    url: 'https://repositorioiesarcipreste.000webhostapp.com/php/deleteUser.php',
+                    type: 'POST',
+                }).done(function(data){
+                    console.log(data);
+                    if(data == 'OK'){
+                        $('#tr-'+clave+'').remove();
+                    }
+                });
+        });
         });
     }
 });
@@ -199,5 +272,46 @@ $("#btn-create").off().on("click",function(){
                 }
             }
         }
+    }
+
+});
+
+$("#btn-upload").off().on("click", function(){
+    var author=$("#inputProjectAuthor").val();
+    var username=$("#inputProjectUsername").val();
+    var curse=$("#inputProjectCurse").val();
+    var description=$("#inputProjectDescription").val();
+    //var url=document.getElementById("inputUploadFile").files[0].name; 
+    var url=$('#inputUploadFile').val();
+    var project= $('#inputProjectProject').val();
+    var parameters = {
+        author : author,
+        username : username,
+        curso : curse,
+        description : description,
+        url : url,
+        project: project
+    }
+    console.log(parameters);
+    if(author == '' || author == ' '){
+        alert("Por favor, introduce un usuario valido");
+    }else{
+        if(username == '' || username == ' '){
+            alert("Por favor, introduce una password valida");
+        }else{
+            if(description == '' || description == ' '){
+                alert("Por favor, introduce un usuario valido");
+            }else{
+                $.ajax({
+                    data: parameters,
+                    url: 'https://repositorioiesarcipreste.000webhostapp.com/php/exampleProject.php',
+                    type: 'POST',
+                    success: function(response){
+                        console.log(response);
+                    }
+                });
+                }
+            }
+        
     }
 });
