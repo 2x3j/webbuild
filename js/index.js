@@ -281,8 +281,10 @@ $("#btn-upload").off().on("click", function(){
     var username=$("#inputProjectUsername").val();
     var curse=$("#inputProjectCurse").val();
     var description=$("#inputProjectDescription").val();
-    //var url=document.getElementById("inputUploadFile").files[0].name; 
+    //var url=document.getElementById("inputUploadFile").files[0]; 
     var url=$('#inputUploadFile').val();
+    //var formdata= new FormData();
+    //formdata.append("inputUploadFile",url);
     var project= $('#inputProjectProject').val();
     var parameters = {
         author : author,
@@ -303,6 +305,7 @@ $("#btn-upload").off().on("click", function(){
                 alert("Por favor, introduce un usuario valido");
             }else{
                 $.ajax({
+                    
                     data: parameters,
                     url: 'https://repositorioiesarcipreste.000webhostapp.com/php/exampleProject.php',
                     type: 'POST',
