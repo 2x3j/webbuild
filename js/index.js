@@ -1,4 +1,6 @@
+
 $("#btn-signin").off().on("click",function(){
+    localStorage.clear();
     var username=$("#inputUsername").val();
     var password=$("#inputPassword").val();
     var parameters = {
@@ -20,7 +22,15 @@ $("#btn-signin").off().on("click",function(){
                 type: 'POST',
                 success: function(response){
                     console.log(response);
-                    if(response == 'OK'){ //SI DEVUELVE EL PHP OK ES QUE ESE USUARIO Y ESA CONTRASEÑA EXISTEN
+                    if(response == 'NO'){ //SI DEVUELVE EL PHP OK ES QUE ESE USUARIO Y ESA CONTRASEÑA EXISTEN
+                        alert('Contraseñas erroneas');
+                    }else{
+                         localStorage.setItem("rol",response.rol);
+                        var rol = localStorage.getItem("rol");
+                        if(rol == 'alumno'){
+                            $("#liCreate").css("display","none");
+                            $("#liGetUsers").css("display","none");
+                        }
                         $("#inputUsername").val(null);
                         $("#inputPassword").val(null);
                         $("#screen-login").fadeOut(400);
@@ -29,6 +39,7 @@ $("#btn-signin").off().on("click",function(){
                             url: 'https://repositorioiesarcipreste.000webhostapp.com/php/getListProyect.php',
                             type: 'POST',
                         }).done(function(data){
+                            
                             $('#tablaGetProyectos').html('');
                            console.log(data);
                            var count = Object.keys(data).length;
@@ -36,6 +47,9 @@ $("#btn-signin").off().on("click",function(){
                             $('#tablaGetProyectos').append('<tr id="headertablaGetProyectos" class="info"><th>Author</th><th>Username</th><th>Curse</th><th>Description</th><th>Project</th><th>Actions</th></tr>');
                             for(i=0;i<count;i++){
                                 $('#tablaGetProyectos').append('<tr id="tr-'+data[i].project+'"><td>'+data[i].author+'</td><td>'+data[i].username+'</td><td>'+data[i].curso+'</td><td>'+data[i].description+'</td><td>'+data[i].project+'</td><td><button id="btnDown-'+data[i].project+'" style="margin-right: 10px;" type="button" class="btn btn-info downProject">Download</button><button id="btnDelete-'+data[i].project+'" type="button" class="btn btn-danger deleteProject">Delete</button></td></tr>');
+                            }
+                            if(rol == 'alumno'){
+                                $(".deleteProject").css("display","none");
                             }
                             $(".deleteProject").off().on("click", function(){
                                 var id = $(this).attr("id");
@@ -65,9 +79,7 @@ $("#btn-signin").off().on("click",function(){
                             }
                 
                         });
-                        });
-                    }else{
-                        alert('Contraseñas erroneas');
+                        }); 
                     }   
                 }
             
@@ -76,6 +88,7 @@ $("#btn-signin").off().on("click",function(){
     }
 });
 $("#btn-logout").off().on("click",function(){
+    localStorage.clear();
     $("#screen-menu").fadeOut(400);
     $("#screen-login").fadeIn(400);
     $("#liUpload").removeClass("active");
@@ -111,6 +124,12 @@ $("#liProyectos").off().on("click",function(){
         for(i=0;i<count;i++){
             $('#tablaGetProyectos').append('<tr id="tr-'+data[i].project+'"><td>'+data[i].author+'</td><td>'+data[i].username+'</td><td>'+data[i].curso+'</td><td>'+data[i].description+'</td><td>'+data[i].project+'</td><td><button id="btnDown-'+data[i].project+'" style="margin-right: 10px;" type="button" class="btn btn-info downProject">Download</button><button id="btnDelete-'+data[i].project+'" type="button" class="btn btn-danger deleteProject">Delete</button></td></tr>');
         }
+        var rol = localStorage.getItem("rol");
+                            console.log(rol);
+                            if(rol == 'alumno'){
+                                $(".deleteProject").css("display","none");
+                            }
+        
         $(".deleteProject").off().on("click", function(){
             var id = $(this).attr("id");
             var clave= id.substr(10);
