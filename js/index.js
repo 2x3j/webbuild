@@ -1,4 +1,3 @@
-
 $("#btn-signin").off().on("click",function(){
     localStorage.clear();
     var username=$("#inputUsername").val();
@@ -15,71 +14,9 @@ $("#btn-signin").off().on("click",function(){
         if(password == '' || password == ' '){
             alert("Por favor, introduce una password valida");
         }else{
-            //if(username == 'admin' && password== 'admin'){
-            /*    localStorage.setItem("rol",response.rol);
-                        var rol = localStorage.getItem("rol");
-                        if(rol == 'alumno'){
-                            $("#liCreate").css("display","none");
-                            $("#liGetUsers").css("display","none");
-                        }
-                        $("#inputUsername").val(null);
-                        $("#inputPassword").val(null);
-                        $("#screen-login").fadeOut(400);
-                        $("#screen-menu").fadeIn(400);
-                        $.ajax({
-                            url: 'https://repositorioiesarcipreste.000webhostapp.com/php/getListProyect.php',
-                            type: 'POST',
-                        }).done(function(data){
-                            
-                            $('#tablaGetProyectos').html('');
-                           console.log(data);
-                           var count = Object.keys(data).length;
-                           console.log(count);
-                            $('#tablaGetProyectos').append('<tr id="headertablaGetProyectos" class="info"><th>Author</th><th>Username</th><th>Curse</th><th>Description</th><th>Project</th><th>Actions</th></tr>');
-                            for(i=0;i<count;i++){
-                                $('#tablaGetProyectos').append('<tr id="tr-'+data[i].project+'"><td>'+data[i].author+'</td><td>'+data[i].username+'</td><td>'+data[i].curso+'</td><td>'+data[i].description+'</td><td>'+data[i].project+'</td><td><button id="btnDown-'+data[i].project+'" style="margin-right: 10px;" type="button" class="btn btn-info downProject">Download</button><button id="btnDelete-'+data[i].project+'" type="button" class="btn btn-danger deleteProject">Delete</button></td></tr>');
-                            }
-                            if(rol == 'alumno'){
-                                $(".deleteProject").css("display","none");
-                            }
-                            $(".deleteProject").off().on("click", function(){
-                                var id = $(this).attr("id");
-                                var clave= id.substr(10);
-                                console.log(clave);
-                                var parameters = {
-                                    project : clave
-                                }
-                                $.ajax({
-                                    data: parameters,
-                                    url: 'https://repositorioiesarcipreste.000webhostapp.com/php/deleteProject.php',
-                                    type: 'POST',
-                                }).done(function(data){
-                                    console.log(data);
-                                    if(data == 'OK'){
-                                        $('#tr-'+clave+'').remove();
-                                    }
-                                });
-                               
-                        });
-                        $(".downProject").off().on("click", function(){
-                            var id = $(this).attr("id");
-                            var clave= id.substr(8);
-                            console.log(clave);
-                            var parameters = {
-                                project : clave
-                            }
-                
-                        });
-                        }); 
-                    }   
-                }
-            */
-            //}else{
-            
-            //}
             $.ajax({
                 data: parameters,
-                url: 'https://repositorioiesarcipreste.000webhostapp.com/php/getUser.php',
+                url: 'https://localhost/visualstudio/php/getUser.php',
                 dataType: "json",
                 type: 'POST',
                 success: function(response){
@@ -87,7 +24,7 @@ $("#btn-signin").off().on("click",function(){
                     if(response == 'NO'){ //SI DEVUELVE EL PHP OK ES QUE ESE USUARIO Y ESA CONTRASEÑA EXISTEN
                         alert('Contraseñas erroneas');
                     }else{
-                         localStorage.setItem("rol",response.rol);
+                        localStorage.setItem("rol",response.rol);
                         var rol = localStorage.getItem("rol");
                         if(rol == 'alumno'){
                             $("#liCreate").css("display","none");
@@ -98,7 +35,7 @@ $("#btn-signin").off().on("click",function(){
                         $("#screen-login").fadeOut(400);
                         $("#screen-menu").fadeIn(400);
                         $.ajax({
-                            url: 'https://repositorioiesarcipreste.000webhostapp.com/php/getListProyect.php',
+                            url: 'https://localhost/visualstudio/php/getListProyect.php',
                             type: 'POST',
                         }).done(function(data){
                             
@@ -122,7 +59,7 @@ $("#btn-signin").off().on("click",function(){
                                 }
                                 $.ajax({
                                     data: parameters,
-                                    url: 'https://repositorioiesarcipreste.000webhostapp.com/php/deleteProject.php',
+                                    url: 'https://localhost/visualstudio/php/deleteProject.php',
                                     type: 'POST',
                                 }).done(function(data){
                                     console.log(data);
@@ -132,15 +69,23 @@ $("#btn-signin").off().on("click",function(){
                                 });
                                
                         });
-                        $(".downProject").off().on("click", function(){
+                         $(".downProject").off().on("click", function(){
                             var id = $(this).attr("id");
                             var clave= id.substr(8);
                             console.log(clave);
                             var parameters = {
                                 project : clave
                             }
-                
-                        });
+                            $.ajax({
+                                data: parameters,
+                                url: 'https://localhost/visualstudio/php/download.php',
+                                type: 'POST',
+                            }).done(function(data){
+                                console.log(data);
+                                if(data == 'OK'){}
+                            });
+                        }); 
+
                         }); 
                     }   
                 }
@@ -175,7 +120,7 @@ $("#liProyectos").off().on("click",function(){
     $("#liUpload").removeClass("active");
     $("#liProyectos").addClass("active");
     $.ajax({
-        url: 'https://repositorioiesarcipreste.000webhostapp.com/php/getListProyect.php',
+        url: 'https://localhost/visualstudio/php/getListProyect.php',
         type: 'POST',
     }).done(function(data){
         $('#tablaGetProyectos').html('');
@@ -184,7 +129,7 @@ $("#liProyectos").off().on("click",function(){
 
         $('#tablaGetProyectos').append('<tr id="headertablaGetProyectos" class="info"><th>Author</th><th>Username</th><th>Curse</th><th>Description</th><th>Project</th><th>Actions</th></tr>');
         for(i=0;i<count;i++){
-            $('#tablaGetProyectos').append('<tr id="tr-'+data[i].project+'"><td>'+data[i].author+'</td><td>'+data[i].username+'</td><td>'+data[i].curso+'</td><td>'+data[i].description+'</td><td>'+data[i].project+'</td><td><button id="btnDown-'+data[i].project+'" href="/php/download.php?proyecto='+data[i].project+'" style="margin-right: 10px;" type="button" class="btn btn-info downProject">Download</button><button id="btnDelete-'+data[i].project+'" type="button" class="btn btn-danger deleteProject">Delete</button></td></tr>');
+            $('#tablaGetProyectos').append('<tr id="tr-'+data[i].project+'"><td>'+data[i].author+'</td><td>'+data[i].username+'</td><td>'+data[i].curso+'</td><td>'+data[i].description+'</td><td>'+data[i].project+'</td><td><button id="btnDown-'+data[i].project+'" style="margin-right: 10px;" type="button" class="btn btn-info downProject">Download</button><button id="btnDelete-'+data[i].project+'" type="button" class="btn btn-danger deleteProject">Delete</button></td></tr>');
         }
         var rol = localStorage.getItem("rol");
                             console.log(rol);
@@ -201,7 +146,7 @@ $("#liProyectos").off().on("click",function(){
             }
             $.ajax({
                 data: parameters,
-                url: 'https://repositorioiesarcipreste.000webhostapp.com/php/deleteProject.php',
+                url: 'https://localhost/visualstudio/php/deleteProject.php',
                 type: 'POST',
             }).done(function(data){
                 console.log(data);
@@ -266,7 +211,7 @@ $("#btnGetUsers").off().on("click",function(){
     }else{
         $.ajax({
             data: parameters,
-            url: 'https://repositorioiesarcipreste.000webhostapp.com/php/searchUser.php',
+            url: 'https://localhost/visualstudio/php/searchUser.php',
             type: 'POST',
         }).done(function(data){
            console.log(data[0]);
@@ -284,7 +229,7 @@ $("#btnGetUsers").off().on("click",function(){
                 }
                 $.ajax({
                     data: parameters,
-                    url: 'https://repositorioiesarcipreste.000webhostapp.com/php/deleteUser.php',
+                    url: 'https://localhost/visualstudio/php/deleteUser.php',
                     type: 'POST',
                 }).done(function(data){
                     console.log(data);
@@ -336,7 +281,7 @@ $("#btn-create").off().on("click",function(){
                         }else{
                             $.ajax({
                                 data: parameters,
-                                url: 'https://repositorioiesarcipreste.000webhostapp.com/php/createUser.php',
+                                url: 'https://localhost/visualstudio/php/createUser.php',
                                 type: 'POST',
                                 success: function(response){
                                     console.log(response);
@@ -357,7 +302,7 @@ $("#btn-create").off().on("click",function(){
 
 });
 
-$("#btn-upload").off().on("click", function(){
+/* $("#btn-upload").off().on("click", function(){
     var author=$("#inputProjectAuthor").val();
     var username=$("#inputProjectUsername").val();
     var curse=$("#inputProjectCurse").val();
@@ -398,4 +343,4 @@ $("#btn-upload").off().on("click", function(){
             }
         
     }
-});
+}); */

@@ -1,0 +1,12 @@
+DELETE FROM 'users' WHERE 'users' .'username' = $;
+
+                                                          
+
+Email: arciprestedehita.repositorio@gmail.com                           
+Contraseña: azuqueca19200
+
+Email 000webhost: arciprestedehita.repositorio@gmail.com
+Url: https://repositorioiesarcipreste.000webhostapp.com/
+
+
+id8093074_repositorio	id8093074_root	localhost
