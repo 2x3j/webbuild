@@ -45,7 +45,7 @@ $("#btn-signin").off().on("click",function(){
                            console.log(count);
                             $('#tablaGetProyectos').append('<tr id="headertablaGetProyectos" class="info"><th>Author</th><th>Username</th><th>Curse</th><th>Description</th><th>Project</th><th>Actions</th></tr>');
                             for(i=0;i<count;i++){
-                                $('#tablaGetProyectos').append('<tr id="tr-'+data[i].project+'"><td>'+data[i].author+'</td><td>'+data[i].username+'</td><td>'+data[i].curso+'</td><td>'+data[i].description+'</td><td>'+data[i].project+'</td><td><button id="btnDown-'+data[i].project+'" style="margin-right: 10px;" type="button" class="btn btn-info downProject">Download</button><button id="btnDelete-'+data[i].project+'" type="button" class="btn btn-danger deleteProject">Delete</button></td></tr>');
+                                $('#tablaGetProyectos').append('<tr id="tr-'+data[i].project+'"><td>'+data[i].author+'</td><td>'+data[i].username+'</td><td>'+data[i].curso+'</td><td>'+data[i].description+'</td><td>'+data[i].project+'</td><td><button id="btnDown-'+data[i].project+'" href="/php/URLQUETUVASAUTILIZAR.php?proyecto='+data[i].project+' style="margin-right: 10px;" type="button" class="btn btn-info downProject">Download</button><button id="btnDelete-'+data[i].project+'" type="button" class="btn btn-danger deleteProject">Delete</button></td></tr>');
                             }
                             if(rol == 'alumno'){
                                 $(".deleteProject").css("display","none");
@@ -129,7 +129,7 @@ $("#liProyectos").off().on("click",function(){
 
         $('#tablaGetProyectos').append('<tr id="headertablaGetProyectos" class="info"><th>Author</th><th>Username</th><th>Curse</th><th>Description</th><th>Project</th><th>Actions</th></tr>');
         for(i=0;i<count;i++){
-            $('#tablaGetProyectos').append('<tr id="tr-'+data[i].project+'"><td>'+data[i].author+'</td><td>'+data[i].username+'</td><td>'+data[i].curso+'</td><td>'+data[i].description+'</td><td>'+data[i].project+'</td><td><button id="btnDown-'+data[i].project+'" style="margin-right: 10px;" type="button" class="btn btn-info downProject">Download</button><button id="btnDelete-'+data[i].project+'" type="button" class="btn btn-danger deleteProject">Delete</button></td></tr>');
+            $('#tablaGetProyectos').append('<tr id="tr-'+data[i].project+'"><td>'+data[i].author+'</td><td>'+data[i].username+'</td><td>'+data[i].curso+'</td><td>'+data[i].description+'</td><td>'+data[i].project+'</td><td><button id="btnDown-'+data[i].project+'" href="/php/URLQUETUVASAUTILIZAR.php?proyecto='+data[i].project+' style="margin-right: 10px;" type="button" class="btn btn-info downProject">Download</button><button id="btnDelete-'+data[i].project+'" type="button" class="btn btn-danger deleteProject">Delete</button></td></tr>');
         }
         var rol = localStorage.getItem("rol");
                             console.log(rol);
