@@ -1,8 +1,8 @@
-    <?php
+<?php
 
 require_once('conectMYSQL.php'); 
 
-$username = $_POST['username'];  
+$project = $_POST['project'];  
 //$date = $_POST["date"];
 
 //conectamos con la BBDD
@@ -11,7 +11,7 @@ $username = $_POST['username'];
 if(!$conn){ //Si la conexión falla
     print_r('Connection failed: ' . mysqli_connect_error());
 }else{ // Si la conexión OK
-    $sql = "DELETE FROM users WHERE username = '".$username."'";
+    $sql = "DELETE FROM projects WHERE project = '".$project."'";
     if(mysqli_query($conn, $sql)){
         echo json_encode("OK", JSON_FORCE_OBJECT);
     }else{

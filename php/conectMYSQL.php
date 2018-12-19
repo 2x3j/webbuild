@@ -1,12 +1,12 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header('Content-type: application/json; charset=utf-8');
+/* header("Access-Control-Allow-Origin: *"); */
+header('Content-type: application/json; charset=utf-8');  
 function conectMYSQL(){
 
     $servername = "localhost";
-    $database = "id8093074_repositorio";
-    $username = "id8093074_root";
-    $password = "azuqueca19200";
+    $database = "repositorio";
+    $username = "root";
+    $password = "";
     // Creamos la conexión
     $conn = mysqli_connect($servername, $username, $password, $database);
     // Chequeamos la conexión
